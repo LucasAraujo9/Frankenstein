@@ -1,4 +1,4 @@
-﻿using Frankenstein.Application.Models;
+﻿using Frankenstein.Application.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Frankenstein.Application;

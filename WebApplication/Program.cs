@@ -1,3 +1,6 @@
+
+using Frankenstein.Application.Mappings;
+
 namespace Frankenstein.Application;
 
 public class Program
@@ -12,6 +15,11 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddAutoMapper(cfg =>
+        {
+            cfg.AddProfile<FrankwnstreinProfile>();
+        });
 
         var app = builder.Build();
 

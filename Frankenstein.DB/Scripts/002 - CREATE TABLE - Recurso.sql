@@ -1,9 +1,9 @@
 ﻿-- Caso não exista, cria uma tabela chamada "Recurso", com ID, Nome, Email
 
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Recurso')
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Recursos')
 BEGIN
-	CREATE TABLE Recurso (
-		ID INT PRIMARY KEY IDENTITY(1,1),
+	CREATE TABLE Recursos (
+		ID UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 		Nome NVARCHAR(100) NOT NULL,
 		Tipo NVARCHAR(100) NOT NULL
 	);
