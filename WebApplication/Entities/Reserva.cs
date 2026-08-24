@@ -1,4 +1,4 @@
-﻿namespace Frankenstein.Application.Models;
+﻿namespace Frankenstein.Application.Entities;
 
 public class Reserva
 {

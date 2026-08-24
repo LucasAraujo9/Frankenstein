@@ -1,8 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Frankenstein.Application;
+using Frankenstein.Application.Mappings;
+using Frankenstein.Application.Repositories;
+using Frankenstein.Application.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Frankenstein.DB;
 public class Program
-{
+{    
     static void Main(string[] args)
     {
         Console.WriteLine("-----------------------------------");
@@ -32,12 +38,28 @@ public class Program
             opcao = byte.Parse(Console.ReadLine());
         }
 
-        IConfigurationRoot? configuration = new ConfigurationBuilder()
+        IConfigurationRoot configuration = new ConfigurationBuilder()
                             .SetBasePath(AppContext.BaseDirectory)
                             .AddJsonFile("appsettings.json")
                             .Build();
 
-        CreateDatabase createDatabase = new CreateDatabase(configuration.GetConnectionString("FrankensteinDatabase"));
+        string? connectionString = configuration.GetConnectionString("FrankensteinDatabase");
+
+        ServiceCollection services = new ServiceCollection();
+
+        services.AddLogging();
+
+        services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<IUsuarioService, UsuarioService>();
+        services.AddAutoMapper(cfg => cfg.AddProfile<FrankwnstreinProfile>());
+
+        ServiceProvider provider = services.BuildServiceProvider();
+        IServiceScope scope = provider.CreateScope();
+
+        CreateDatabase createDatabase = new CreateDatabase(
+            connectionString,
+            scope.ServiceProvider.GetRequiredService<IUsuarioService>());
 
         switch (opcao)
         {

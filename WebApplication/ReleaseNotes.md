@@ -2,6 +2,10 @@
 2024-06-23: Criei o repositório no GitHub e subi o projeto para lá. Vamos registar essa historia organizadamente.
 Nunca tinha reparado o quão chato é apontar tudo certo no .gitignore
 
+Criei os repositorios, serviços e suas interfaces. Por enquanto não estou ligando muito para a arquitetura, mas acho que vou precisar organizar melhor depois
+Instalei o Bogus para gerar dados pro DB. Casou certinho com a ideia de popular o banco de dados.
+
+
 ## 0.0.1 - Frankenstein, a primeira perna.
 2024-06-19: Estou começando pelos registros do banco de dados:
 A ideia é criar um script que eu possa resetar o banco de dados e popular com dados de teste, para que eu possa testar a aplicação sem precisar ficar criando registros manualmente.
@@ -13,4 +17,4 @@ Criei o AppDbContext e criei as entidades.
 ** Depois vou criar os Services, Repositories e Controllers
 E ai vou colocar o loop por quantidade para alimentar os dados de teste.
 
--- Quero testar concorrencia e etc, vou suar K6
+-- Quero testar concorrencia e etc, vou usar K6
